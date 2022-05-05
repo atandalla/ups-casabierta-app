@@ -1,0 +1,94 @@
+<%- include ('../partials/admin/header.ejs') %>
+    <%- include ('../partials/admin/navigation.ejs') %>
+
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+
+
+            <!-- Content Row -->
+            <div class="row">
+
+
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row" style="margin-right: 0; margin-left: 0;">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Actualizar Portada!</h1>
+                                    <% if (errors) { %>
+                                        <% for(errores in errors1) { %>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <%= errors1[errores].text %>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+
+                                                    <% if (mensaje) { %>
+                                                        <% for(mensajes in mensaje) { %>
+                                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                                <%= mensaje[mensajes].text %>
+                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                            </div>
+                                                            <% } %>
+                                                                <% } %>
+                                </div>
+                                <form class="user" method="POST" enctype="multipart/form-data" action="/saveActualizarRecurso">
+                                    <div class="form-group row" style="display: block; ">
+                                        <div class="form-group">
+                                            <select class="form-select" size="5" aria-label="size 3 select example" name="carrera" id="carrera" style="width: 100%;" <option selected>Open this select menu</option>
+                                                    <% for(index in data) { %>
+                                                    <option value="<%= data[index].id_carrera %>"><%= data[index].nombre_carrera %></option>
+                                                    <% } %>
+                                                  </select>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="file" class="form-control " id="multimedia" name="multimedia" placeholder="Multimedia" style="border-radius: 3rem; height:3.1rem;" required />
+
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Guardar</button>
+                                </form>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <!-- Content Row -->
+
+
+        </div>
+
+
+
+
+        </div>
+        </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+        <%- include ('../partials/admin/footer.ejs') %>

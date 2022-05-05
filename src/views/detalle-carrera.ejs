@@ -1,0 +1,162 @@
+<%- include ('./partials/client/header.ejs') %>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <div class="logo">
+                <h1><a href="index.html">InstaUPS</a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav id="navbar" class="navbar" style="padding-bottom: 0.5rem !important">
+                <div class="nav-items">
+                    <img src="/portadas/home.PNG" alt="" class="icon" onclick="reHome()" style="width: 1rem;">
+                    <img src="/portadas/carreras.png" alt="" class="icon" onclick="reHome()" style="width: 1rem;">
+                </div>
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+
+
+    <main id="main">
+
+        <section class="main">
+            <div class="content">
+                <div class="left-col">
+                    <div class="status-content" style="padding-top: 1.5rem;">
+                        <% for(index in carreras) { %>
+                            <div class="status-card" onclick="reCarreras('<%= carreras[index].id_carrera %>')">
+                                <div class="profile-pic"><img src="/uploads/<%= carreras[index].portada %>" alt="">
+                                </div>
+                                <p class="username">
+                                    <%= carreras[index].nombre_carrera %>
+                                </p>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <div class="post">
+
+                        <% for(index in data) { %>
+
+                            <div class="card">
+                                <div class="top">
+                                    <div class="userDetails">
+                                        <div class="profile_img">
+                                            <img src="/uploads/<%= data[index].portada %>" class="cover" alt="">
+                                        </div>
+                                        <div>
+                                            <h3 style="font-size:0.8rem;">
+                                                <%= data[index].nombre_carrera %><br><span style="font-size:0.5rem;">
+                                                        <%= data[index].sede %>, <%= data[index].nombre_campus %>
+                                                    </span>
+                                            </h3>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <img src="/portadas/dot.png" class="dot " alt="" style="width:0p;">
+                                    </div>
+                                </div>
+                                <div class="imgBox">
+                                    <img src="/uploads/<%= data[index].multimedia %>" class="cover" alt="">
+                                </div>
+                                <div class="actionsBtns">
+                                    <div class="left">
+                                        <img src="/portadas/heart.png" class="heart" onclick="likeBtn()" alt="">
+                                        <img src="/portadas/comment.png" alt="">
+
+                                    </div>
+                                    <div class="right">
+                                        <img src="/portadas/insta.png" alt="">
+                                        <img src="/portadas/facebook.png" alt="">
+                                    </div>
+                                </div>
+
+                                <h4 class="likes" style="font-weight: 700 !important;">1 Me gusta</h4>
+                                <h4 class="message"><b>
+                                        <%= data[index].nombre_carrera %>
+                                    </b>
+                                    <%= data[index].descripcion %> 
+                                    <br>
+                                    <b>Director</b> <br> <%= data[index].director %> -
+                                    <span> #<%= data[index].contacto %></span>
+                                </h4>
+                                <a href="" type="button" style="color: #999;" data-toggle="modal"
+                                    data-target="#modalComentarios">
+                                    <h4 class="comments" style="color: #999;;">Ver todos los comentarios</h4>
+                                </a>
+                                <div class="addComments">
+                                    <div class="userImg">
+                                        <img src="/portadas/user.jpg" class="cover" alt="">
+                                    </div>
+                                    <input type="text" class="text" placeholder="Add a Comment...">
+                                </div>
+                                <h5 class="postTime">HACE 2 HORAS</h5>
+                            </div>
+                            <br>
+                            <% } %>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <script>
+            function likeBtn() {
+                let heart = document.querySelector('.heart');
+                let likes = document.querySelector('.likes');
+
+                if (heart.src.match("heart.png")) {
+                    heart.src = "/portadas/heart_red.png"
+                    likes.innerHTML = "2 Me gusta"
+                } else {
+                    heart.src = "/portadas/heart.png"
+                    likes.innerHTML = "2 Me gusta"
+                }
+            }
+
+            function reHome() {
+                window.location.href = '/sur'
+            }
+
+            function reCarreras(id) {
+                window.location.href = '/detalle-carrera/' + id;
+            }
+        </script>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalComentarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include ('./partials/client/footer.ejs') %>
