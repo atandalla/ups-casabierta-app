@@ -1,22 +1,23 @@
 <%- include ('./partials/client/header.ejs') %>
 
-<style>
+    <style>
+        .image-responsive {
+            width: 34rem;
+            height: 22rem;
+        }
 
-    .image-responsive{
-        width: 34rem;
-        height: 22rem;
-    }
-    @media (max-width: 991px) {
-     .image-responsive{
-        width: 34rem;
-        height: 19rem;
-    }
-    .margen-responsive{
-    padding-right: calc(var(--bs-gutter-x) * .0) !important; 
-    padding-left: calc(var(--bs-gutter-x) * .0) !important; 
-    }
-}
-</style>
+        @media (max-width: 991px) {
+            .image-responsive {
+                width: 34rem;
+                height: 19rem;
+            }
+
+            .margen-responsive {
+                padding-right: calc(var(--bs-gutter-x) * .0) !important;
+                padding-left: calc(var(--bs-gutter-x) * .0) !important;
+            }
+        }
+    </style>
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
@@ -30,7 +31,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
 
-                    <li><a class="getstarted scrollto" href="#features">Campus</a></li>
+                    <li><a class="getstarted scrollto" href="#">Campus</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -47,27 +48,34 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2 data-aos="fade-in" style="font-size: 24px;">Carreras</h2>
+                    <h2 data-aos="fade-in" style="font-size: 24px; font-weight: bold;">Carreras</h2>
 
                 </div>
 
 
                 <div class="row margen-responsive">
                     <% for(index in data) { %>
-                    <div class="col-md-6 d-flex " data-aos="fade-right" >
-                        
-                        <div class="card" style="padding: 0;">
-                            <div class="card-img">
-                                <img src="/uploads/<%= data[index].portada %>" alt="..." class="image-responsive">
-                            </div>
-                            <div class="card-body" style="flex: 0;height: 3.6rem;padding-top: 1rem;">
-                                <h5 class="card-title" style="font-size: 19px;"><a href="/detalle-carrera/<%= data[index].id_carrera %>"><%= data[index].nombre_carrera %></a></h5>
+                        <div class="col-md-6 d-flex " data-aos="fade-right">
 
-                            </div>
+                            <a href="/detalle-carrera/<%= data[index].id_carrera %>">
+                                <div class="card" style="padding: 0;">
+                                    <div class="card-img">
+                                        <img src="/uploads/<%= data[index].portada %>" alt="..."
+                                            class="image-responsive">
+                                    </div>
+                                    <div class="card-body" style="flex: 0;height: 3.6rem;padding-top: 1rem;">
+                                        <h5 class="card-title" style="font-size: 19px;"><a
+                                                href="/detalle-carrera/<%= data[index].id_carrera %>">
+                                                <%= data[index].nombre_carrera %>
+                                            </a></h5>
+
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
-                    </div>
-    
-                    <% } %>
+
+                        <% } %>
 
                 </div>
         </section>
